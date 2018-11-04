@@ -119,7 +119,7 @@ fn main() {
 
     //Asignamos la función usar palabra a una variable.
     let palabra_usada = usar_palabra();
-    let letras = crear_letras(&palabra_usada);
+    let mut letras = crear_letras(&palabra_usada);
 
     //Mensaje de bienvenida para el usuario
     println!("¡Bienvenido al ahorcado de Rust!");
@@ -153,7 +153,20 @@ fn main() {
         if !minimo_revelado {
             turnos_restantes = turnos_restantes -1;
         }
+
+        //Revisar el progreso del juego
+
+        match revisar_progreso(turnos_restantes, &letras) {
+            Progreso::Jugando => continue,
+            Progreso::Victoria => {
+                println!("\n¡Felicidades! Has ganado :D");
+                break;
+            }
+            Progreso::Derrota => {
+                println!("\nPerdiste :(");
+            }
+        }
     }
 
-
+    println!("Adios :B");
 }
