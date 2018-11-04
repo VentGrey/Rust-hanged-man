@@ -10,10 +10,8 @@ use std::io::prelude::*;
 // Estructuras
 struct Letra {
     caracter: char,
-    visible: bool
+    visible: bool,
 }
-
-
 
 //La función usar palabra, no toma ningún argumento y retorna una cadena.
 fn usar_palabra() -> String {
@@ -22,11 +20,12 @@ fn usar_palabra() -> String {
 
     // Leer el archivo
     let mut contenido = String::new();
-    archivo.read_to_string(&mut contenido)
+    archivo
+        .read_to_string(&mut contenido)
         .expect("Fallo al leer el archivo"); //Excepción en caso de no poder leer el archivo
 
     // Recortar las palabras del archivo
-    let palabras:  Vec<&str> = contenido.trim().split(',').collect();
+    let palabras: Vec<&str> = contenido.trim().split(',').collect();
 
     // Generar un indice aleatorio
     let indice_rand = rand::thread_rng().gen_range(0, palabras.len());
@@ -36,8 +35,7 @@ fn usar_palabra() -> String {
     return String::from(palabras[indice_rand]);
 }
 
-fn crear_letras(palabra: &String)  -> Vec<Letra> {
-
+fn crear_letras(palabra: &String) -> Vec<Letra> {
     //Crear un vector vacío
     let mut letras: Vec<Letra> = Vec::new();
 
@@ -45,7 +43,7 @@ fn crear_letras(palabra: &String)  -> Vec<Letra> {
     for i in palabra.chars() {
         letras.push(Letra {
             caracter: i,
-            visible: false
+            visible: false,
         });
     }
 }
@@ -61,6 +59,8 @@ fn mostrar_progreso(letras: &Vec<Letra>) {
         } else {
             mostrar_cadena.push('_');
         }
+
+        println!("{}", mostrar_cadena);
     }
 }
 
@@ -73,5 +73,3 @@ fn main() {
 
     mostrar_progreso(&letras);
 }
-
-
