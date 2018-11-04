@@ -14,15 +14,15 @@ const INTENTOS: u8 = 5;
 
 // Estructuras
 struct Letra {
-    caracter: char,
-    visible: bool,
+    caracter: char, //Carácter único
+    visible: bool, // Si el carácter será visible para el usuario
 }
 
 //Enumeraciones
 enum Progreso {
-    Jugando,
-    Victoria,
-    Derrota
+    Jugando, //El jugador sigue en el juego
+    Victoria, //El jugador ha ganado
+    Derrota //El jugador ha perdido
 }
 
 //La función usar palabra, no toma ningún argumento y retorna una cadena.
@@ -62,6 +62,10 @@ fn crear_letras(palabra: &String) -> Vec<Letra> {
     return letras;
 }
 
+
+// La función para mostrar progreso revisará el vector de letras declarado en
+// la parte superior del programa, si la letra es visible la asignará al
+// vector, de no ser así en su lugar se asignará un _
 fn mostrar_progreso(letras: &Vec<Letra>) {
     let mut mostrar_cadena = String::from("Progreso:");
 
@@ -78,6 +82,8 @@ fn mostrar_progreso(letras: &Vec<Letra>) {
     }
 }
 
+// Es una funcion simple para leer la entrada del teclado del usuario, si el
+// usuario no ingresa nada el carácter por defecto será un *
 fn leer_entrada() -> char {
     let mut entrada = String::new();
 
@@ -92,6 +98,9 @@ fn leer_entrada() -> char {
     }
 }
 
+// Revisar progreso evalua los turnos y revisa que los booleanos que indican
+// si todas las letras han sido descubiertas muestren el progreso del
+// jugador
 fn revisar_progreso(turnos_restantes: u8, letras: &Vec<Letra>) -> Progreso {
     let mut todos_revelados:bool = true;
 
@@ -101,14 +110,19 @@ fn revisar_progreso(turnos_restantes: u8, letras: &Vec<Letra>) -> Progreso {
         }
     }
 
+    // Si todas las letras son reveladas el juego regresará un estado de
+    // victoria
     if todos_revelados {
         return Progreso::Victoria;
     }
 
+    // Si no se ha revelado todo el juego continuará
     if turnos_restantes > 0 {
         return Progreso::Jugando;
     }
 
+    //Si no quedan turnos y todas las letras siguen sin ser descubiertas
+    //el juego retornará un estado de derrota.
     return Progreso::Derrota;
 
 }
@@ -123,7 +137,8 @@ fn main() {
 
     //Mensaje de bienvenida para el usuario
     println!("¡Bienvenido al ahorcado de Rust!");
-    println!("Las palabras usadas son relacionadas al lenguaje de programacion Rust");
+    println!("Las palabras usadas son relacionadas al lenguaje de programacion\
+             Rust");
     println!("(Ingrese un '*' para salir del programa)");
 
     // Loop para contar los intentos
@@ -168,5 +183,6 @@ fn main() {
         }
     }
 
+    //Mensaje de despedida
     println!("Adios :B");
 }
