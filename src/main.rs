@@ -46,6 +46,8 @@ fn crear_letras(palabra: &String) -> Vec<Letra> {
             visible: false,
         });
     }
+
+    return letras;
 }
 
 fn mostrar_progreso(letras: &Vec<Letra>) {
@@ -67,9 +69,11 @@ fn mostrar_progreso(letras: &Vec<Letra>) {
 fn main() {
     //Asignamos la función usar palabra a una variable.
     let palabra_usada = usar_palabra();
-    let mut letras = crear_letras(&palabra_usada);
+    let letras = crear_letras(&palabra_usada);
 
-    println!("La palabra seleccionada fué {}", palabra_usada);
 
     mostrar_progreso(&letras);
+    println!("La palabra seleccionada fué {}", palabra_usada);
+
+
 }
