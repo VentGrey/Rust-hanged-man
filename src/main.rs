@@ -78,7 +78,24 @@ fn mostrar_progreso(letras: &Vec<Letra>) {
     }
 }
 
+fn leer_entrada() -> char {
+    let mut entrada = String::new();
+
+    match io::stdin().read_line(&mut entrada) {
+        Ok(_) => {
+            match entrada.chars().next() {
+                Some(i) => {return i;}
+                None => {return '*';}
+            }
+        }
+        Err(_) => {return '*';}
+    }
+}
+
 fn main() {
+    //Turnos restantes para el usuario
+    let mut turnos_restantes = INTENTOS;
+
     //Asignamos la función usar palabra a una variable.
     let palabra_usada = usar_palabra();
     let letras = crear_letras(&palabra_usada);
