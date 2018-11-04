@@ -36,7 +36,9 @@ fn usar_palabra() -> String {
     return String::from(palabras[indice_rand]);
 }
 
-fn crear_letras(palabra: &String)  -> Vec<Letra>{
+fn crear_letras(palabra: &String)  -> Vec<Letra> {
+
+    //Crear un vector vacío
     let mut letras: Vec<Letra> = Vec::new();
 
     // Enlazar cada letra en una estructura
@@ -48,12 +50,18 @@ fn crear_letras(palabra: &String)  -> Vec<Letra>{
     }
 }
 
+mostrar_progreso() {
+
+}
+
 fn main() {
     //Asignamos la función usar palabra a una variable.
     let palabra_usada = usar_palabra();
     let mut letras = crear_letras(&palabra_usada);
 
     println!("La palabra seleccionada fué {}", palabra_usada);
+
+    mostrar_progreso(&letras);
 }
 
 
