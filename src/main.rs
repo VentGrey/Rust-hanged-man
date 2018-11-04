@@ -92,7 +92,7 @@ fn leer_entrada() -> char {
     }
 }
 
-fn revisar_progreso(turnos_restantes: u8, letras: &Vec<Letra>) -> Jugando {
+fn revisar_progreso(turnos_restantes: u8, letras: &Vec<Letra>) -> Progreso {
     let mut todos_revelados:bool = true;
 
     for letra in letras {
@@ -101,6 +101,15 @@ fn revisar_progreso(turnos_restantes: u8, letras: &Vec<Letra>) -> Jugando {
         }
     }
 
+    if todos_revelados {
+        return Progreso::Victoria;
+    }
+
+    if turnos_restantes > 0 {
+        return Progreso::Jugando;
+    }
+
+    return Progreso::Derrota;
 
 }
 
