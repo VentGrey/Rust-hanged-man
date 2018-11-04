@@ -8,7 +8,7 @@ use std::fs::File;
 use std::io::prelude::*;
 
 // Estructuras
-struct letra {
+struct Letra {
     caracter: char,
     visible: bool
 }
@@ -36,8 +36,16 @@ fn usar_palabra() -> String {
     return String::from(palabras[indice_rand]);
 }
 
-fn crear_letras(palabra: &String)  -> Vec<letra>{
-    let mut letras: Vec<letra> = Vec::new();
+fn crear_letras(palabra: &String)  -> Vec<Letra>{
+    let mut letras: Vec<Letra> = Vec::new();
+
+    // Enlazar cada letra en una estructura
+    for i in palabra.chars() {
+        letras.push(Letra {
+            caracter: i,
+            visible: false
+        });
+    }
 }
 
 fn main() {
