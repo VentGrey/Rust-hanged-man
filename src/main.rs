@@ -1,3 +1,8 @@
+//crates externas
+extern crate rand;
+
+use rand::Rng;
+
 // Importar bibliotecas de archivos
 use std::fs::File;
 use std::io::prelude::*;
@@ -15,6 +20,11 @@ fn usar_palabra() -> String {
 
     // Recortar las palabras del archivo
     let palabras:  Vec<&str> = contenido.trim().split(',').collect();
+
+    // Generar un indice aleatorio
+    let indice_rand = rand::thread_rng().gen_range(0, palabras.len());
+
+    return String::from(palabras[indice_rand]);
 }
 
 fn main() {
