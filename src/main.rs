@@ -100,10 +100,12 @@ fn main() {
     let palabra_usada = usar_palabra();
     let letras = crear_letras(&palabra_usada);
 
+    //Mensaje de bienvenida para el usuario
     println!("¡Bienvenido al ahorcado de Rust!");
     println!("Las palabras usadas son relacionadas al lenguaje de programacion Rust");
     println!("(Ingrese un '*' para salir del programa)");
 
+    // Loop para contar los intentos
     loop {
         println!("\nTienes {} turnos restantes", turnos_restantes);
         mostrar_progreso(&letras);
@@ -113,6 +115,22 @@ fn main() {
 
         if caracter_usuario == '*' {
             break;
+        }
+
+        // Actualizar el estado de cada letra si es que ésta ha sido revelada
+        // mediante booleanos
+        let mut minimo_revelado:bool = false;
+
+        for letra in letras.iter_mut() {
+            if letra.caracter == caracter_usuario {
+                letra.visible = true;
+                minimo_revelado = true;
+            }
+        }
+
+        //Perder una vida si el usuario se equivoca
+        if !minimo_revelado {
+            turnos_restantes = turnos_restantes -1;
         }
     }
 
