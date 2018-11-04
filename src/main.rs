@@ -50,7 +50,7 @@ fn crear_letras(palabra: &String)  -> Vec<Letra> {
     }
 }
 
-mostrar_progreso() {
+fn mostrar_progreso() {
 
 }
 
