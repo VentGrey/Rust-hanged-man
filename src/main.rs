@@ -50,8 +50,18 @@ fn crear_letras(palabra: &String)  -> Vec<Letra> {
     }
 }
 
-fn mostrar_progreso() {
+fn mostrar_progreso(letras: &Vec<Letra>) {
+    let mut mostrar_cadena = String::from("Progreso:");
 
+    for letra in letras {
+        mostrar_cadena.push(' ');
+
+        if letra.visible {
+            mostrar_cadena.push(letra.caracter);
+        } else {
+            mostrar_cadena.push('_');
+        }
+    }
 }
 
 fn main() {
