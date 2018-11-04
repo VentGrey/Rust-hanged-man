@@ -12,6 +12,9 @@ fn usar_palabra() -> String {
     let mut contenido = String::new();
     archivo.read_to_string(&mut contenido)
         .expect("Fallo al leer el archivo");
+
+    // Recortar las palabras del archivo
+    let palabras:  Vec<&str> = contenido.split(',').collect();
 }
 
 fn main() {
