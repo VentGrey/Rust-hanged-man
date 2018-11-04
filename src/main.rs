@@ -29,6 +29,8 @@ fn usar_palabra() -> String {
 
 fn main() {
     let palabra_usada = usar_palabra();
+
+    println!("La palabra seleccionada fué {}", palabra_usada);
 }
 
 
