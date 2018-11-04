@@ -16,7 +16,7 @@ fn usar_palabra() -> String {
     // Leer el archivo
     let mut contenido = String::new();
     archivo.read_to_string(&mut contenido)
-        .expect("Fallo al leer el archivo");
+        .expect("Fallo al leer el archivo"); //Excepción en caso de no poder leer el archivo
 
     // Recortar las palabras del archivo
     let palabras:  Vec<&str> = contenido.trim().split(',').collect();
@@ -24,10 +24,13 @@ fn usar_palabra() -> String {
     // Generar un indice aleatorio
     let indice_rand = rand::thread_rng().gen_range(0, palabras.len());
 
+    /* La funcion retornara una cadena literal tomada de la cadea de palabras
+     * que cargamos del archivo*/
     return String::from(palabras[indice_rand]);
 }
 
 fn main() {
+    //Asignamos la función usar palabra a una variable.
     let palabra_usada = usar_palabra();
 
     println!("La palabra seleccionada fué {}", palabra_usada);
