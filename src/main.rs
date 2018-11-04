@@ -15,26 +15,30 @@ const INTENTOS: u8 = 5;
 // Estructuras
 struct Letra {
     caracter: char, //Carácter único
-    visible: bool, // Si el carácter será visible para el usuario
+    visible: bool,  // Si el carácter será visible para el usuario
 }
 
 //Enumeraciones
 enum Progreso {
-    Jugando, //El jugador sigue en el juego
+    Jugando,  //El jugador sigue en el juego
     Victoria, //El jugador ha ganado
-    Derrota //El jugador ha perdido
+    Derrota,  //El jugador ha perdido
 }
 
 //La función usar palabra, no toma ningún argumento y retorna una cadena.
 fn usar_palabra() -> String {
     //abrir archivo
-    let mut archivo = File::open("palabras.txt").expect("No se pudo abrir el archivo");
+    let mut archivo = File::open("palabras.txt").expect(
+        "Error al abrir el\
+         archivo",
+    );
 
     // Leer el archivo
     let mut contenido = String::new();
     archivo
         .read_to_string(&mut contenido)
-        .expect("Fallo al leer el archivo"); //Excepción en caso de no poder leer el archivo
+        .expect("Fallo al leer el archivo");
+    //  ^ Excepción en caso de no poder leer el archivo
 
     // Recortar las palabras del archivo
     let palabras: Vec<&str> = contenido.trim().split(',').collect();
@@ -62,7 +66,6 @@ fn crear_letras(palabra: &String) -> Vec<Letra> {
     return letras;
 }
 
-
 // La función para mostrar progreso revisará el vector de letras declarado en
 // la parte superior del programa, si la letra es visible la asignará al
 // vector, de no ser así en su lugar se asignará un _
@@ -88,13 +91,17 @@ fn leer_entrada() -> char {
     let mut entrada = String::new();
 
     match io::stdin().read_line(&mut entrada) {
-        Ok(_) => {
-            match entrada.chars().next() {
-                Some(i) => {return i;}
-                None => {return '*';}
+        Ok(_) => match entrada.chars().next() {
+            Some(i) => {
+                return i;
             }
+            None => {
+                return '*';
+            }
+        },
+        Err(_) => {
+            return '*';
         }
-        Err(_) => {return '*';}
     }
 }
 
@@ -102,7 +109,7 @@ fn leer_entrada() -> char {
 // si todas las letras han sido descubiertas muestren el progreso del
 // jugador
 fn revisar_progreso(turnos_restantes: u8, letras: &Vec<Letra>) -> Progreso {
-    let mut todos_revelados:bool = true;
+    let mut todos_revelados: bool = true;
 
     for letra in letras {
         if !letra.visible {
@@ -124,7 +131,6 @@ fn revisar_progreso(turnos_restantes: u8, letras: &Vec<Letra>) -> Progreso {
     //Si no quedan turnos y todas las letras siguen sin ser descubiertas
     //el juego retornará un estado de derrota.
     return Progreso::Derrota;
-
 }
 
 fn main() {
@@ -137,8 +143,10 @@ fn main() {
 
     //Mensaje de bienvenida para el usuario
     println!("¡Bienvenido al ahorcado de Rust!");
-    println!("Las palabras usadas son relacionadas al lenguaje de programacion\
-             Rust");
+    println!(
+        "Las palabras usadas son relacionadas al lenguaje de programacion\
+         Rust"
+    );
     println!("(Ingrese un '*' para salir del programa)");
 
     // Loop para contar los intentos
@@ -155,7 +163,7 @@ fn main() {
 
         // Actualizar el estado de cada letra si es que ésta ha sido revelada
         // mediante booleanos
-        let mut minimo_revelado:bool = false;
+        let mut minimo_revelado: bool = false;
 
         for letra in letras.iter_mut() {
             if letra.caracter == caracter_usuario {
@@ -166,7 +174,7 @@ fn main() {
 
         //Perder una vida si el usuario se equivoca
         if !minimo_revelado {
-            turnos_restantes = turnos_restantes -1;
+            turnos_restantes = turnos_restantes - 1;
         }
 
         //Revisar el progreso del juego
