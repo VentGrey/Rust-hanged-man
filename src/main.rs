@@ -7,6 +7,13 @@ use rand::Rng;
 use std::fs::File;
 use std::io::prelude::*;
 
+// Estructuras
+struct letra {
+    caracter: char,
+    visible: bool
+}
+
+
 
 //La función usar palabra, no toma ningún argumento y retorna una cadena.
 fn usar_palabra() -> String {
@@ -29,9 +36,14 @@ fn usar_palabra() -> String {
     return String::from(palabras[indice_rand]);
 }
 
+fn crear_letras(palabra: &String)  -> Vec<letra>{
+    let mut letras: Vec<letra> = Vec::new();
+}
+
 fn main() {
     //Asignamos la función usar palabra a una variable.
     let palabra_usada = usar_palabra();
+    let mut letras = crear_letras(&palabra_usada);
 
     println!("La palabra seleccionada fué {}", palabra_usada);
 }
