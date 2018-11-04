@@ -1,16 +1,28 @@
 //crates externas
 extern crate rand;
-
 use rand::Rng;
 
 // Importar bibliotecas de archivos
 use std::fs::File;
 use std::io::prelude::*;
 
+// Entrada/Salida del usuario
+use std::io;
+
+//Limitar al usuario (Si no, no sería un ahorcado)
+const INTENTOS: u8 = 5;
+
 // Estructuras
 struct Letra {
     caracter: char,
     visible: bool,
+}
+
+//Enumeraciones
+enum Progreso {
+    Jugando,
+    Victoria,
+    Derrota
 }
 
 //La función usar palabra, no toma ningún argumento y retorna una cadena.
