@@ -100,9 +100,21 @@ fn main() {
     let palabra_usada = usar_palabra();
     let letras = crear_letras(&palabra_usada);
 
+    println!("¡Bienvenido al ahorcado de Rust!");
+    println!("Las palabras usadas son relacionadas al lenguaje de programacion Rust");
+    println!("(Ingrese un '*' para salir del programa)");
 
-    mostrar_progreso(&letras);
-    println!("La palabra seleccionada fué {}", palabra_usada);
+    loop {
+        println!("\nTienes {} turnos restantes", turnos_restantes);
+        mostrar_progreso(&letras);
+
+        println!("\nPor favor ingrese una letra:");
+        let caracter_usuario = leer_entrada();
+
+        if caracter_usuario == '*' {
+            break;
+        }
+    }
 
 
 }
