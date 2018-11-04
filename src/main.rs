@@ -7,6 +7,11 @@ use std::io::prelude::*;
 fn usar_palabra() -> String {
     //abrir archivo
     let mut archivo = File::open("palabras.txt").expect("No se pudo abrir el archivo");
+
+    // Leer el archivo
+    let mut contenido = String::new();
+    archivo.read_to_string(&mut contenido)
+        .expect("Fallo al leer el archivo");
 }
 
 fn main() {
