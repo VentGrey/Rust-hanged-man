@@ -14,7 +14,7 @@ fn usar_palabra() -> String {
         .expect("Fallo al leer el archivo");
 
     // Recortar las palabras del archivo
-    let palabras:  Vec<&str> = contenido.split(',').collect();
+    let palabras:  Vec<&str> = contenido.trim().split(',').collect();
 }
 
 fn main() {
