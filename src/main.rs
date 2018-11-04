@@ -92,6 +92,18 @@ fn leer_entrada() -> char {
     }
 }
 
+fn revisar_progreso(turnos_restantes: u8, letras: &Vec<Letra>) -> Jugando {
+    let mut todos_revelados:bool = true;
+
+    for letra in letras {
+        if !letra.visible {
+            todos_revelados = false;
+        }
+    }
+
+
+}
+
 fn main() {
     //Turnos restantes para el usuario
     let mut turnos_restantes = INTENTOS;
